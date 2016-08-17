@@ -8,6 +8,10 @@ Author URI: http://xyu.io/
 Version: 1.0
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class WP_SecureDBConnection_DB extends wpdb {
 
 	/**
