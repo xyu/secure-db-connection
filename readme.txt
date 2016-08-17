@@ -60,7 +60,7 @@ define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_
 For detailed installation instructions, please read the [standard installation procedure for WordPress plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
 
 1. Install and activate plugin.
-1. Symlink or copy the `db.php` file from the `/plugins/secure-db-connection/includes/` directory to the `/wp-content/` directory.
+1. Symlink or copy the `db.php` file from the `/plugins/secure-db-connection/lib/` directory to the `/wp-content/` directory.
 1. Set the relevant defines in your `wp-config.php` file.
 
 == Changelog ==
