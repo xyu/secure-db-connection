@@ -14,13 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WP_SecureDBConnection_Admin {
 
-	public function __construct() {
-		$this->init();
-	}
+	private $_wpdb;
 
-	public function init() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
-		add_filter( 'dashboard_glance_items', array( $this, 'dashboard_glance_items' ) );
+	public function __construct( wpdb $wpdb ) {
+		$this->_wpdb = $wpdb;
 	}
 
 	public function admin_enqueue_scripts( $hook_suffix ) {
@@ -62,9 +59,7 @@ class WP_SecureDBConnection_Admin {
 	}
 
 	private function _get_conn_status() {
-		global $wpdb;
-
-		$results = $wpdb->get_results(
+		$results = $this->_wpdb->get_results(
 			"SHOW SESSION STATUS WHERE variable_name IN ( 'Ssl_cipher', 'Ssl_version' )"
 		);
 
