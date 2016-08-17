@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once plugin_dir_url( __FILE__ ) . 'lib/admin.php';
+require_once plugin_dir_url( __FILE__ ) . 'lib/dropin.php';
 
 class WP_SecureDBConnection {
 
@@ -26,12 +27,23 @@ class WP_SecureDBConnection {
 		if ( ! self::$_sdbc_admin instanceof WP_SecureDBConnection_Admin ) {
 			global $wpdb;
 			self::$_sdbc_admin = new WP_SecureDBConnection_Admin(
-				$wpdb
+				$wpdb,
+				self::_get_sdbc_dropin()
 			);
 		}
 		return self::$_sdbc_admin;
 	}
 
+	private static $_sdbc_dropin;
+	private static function _get_sdbc_dropin() {
+		if ( ! self::$_sdbc_dropin instanceof WP_SecureDBConnection_DropIn ) {
+			global $wpdb;
+			self::$_sdbc_dropin = new WP_SecureDBConnection_DropIn(
+				$wpdb
+			);
+		}
+		return self::$_sdbc_dropin;
+	}
 }
 
 add_action( 'plugins_loaded', 'WP_SecureDBConnection::load' );

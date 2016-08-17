@@ -15,9 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WP_SecureDBConnection_Admin {
 
 	private $_wpdb;
+	private $_dropin;
 
-	public function __construct( wpdb $wpdb ) {
+	public function __construct( wpdb $wpdb, WP_SecureDBConnection_DropIn $dropin ) {
 		$this->_wpdb = $wpdb;
+		$this->_dropin = $dropin;
 	}
 
 	public function admin_enqueue_scripts( $hook_suffix ) {
@@ -43,7 +45,7 @@ class WP_SecureDBConnection_Admin {
 			if ( empty( $status['ssl_cipher'] ) ) {
 				printf(
 					'<li class="securedbconnection-nossl"><span title="%s">%s</span></li>',
-					"Connection to MySQL is in plain text",
+					"Connection to MySQL is in plain text:\n" . $this->_dropin->get_status_message(),
 					'MySQL Unencrypted'
 				);
 			} else {
