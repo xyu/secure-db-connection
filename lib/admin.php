@@ -41,7 +41,7 @@ class WP_SecureDBConnection_Admin {
 	 */
 	public function dashboard_glance_items( $elements ) {
 		if ( current_user_can( 'administrator' ) ) {
-			$status = $this->_getConnStatus();
+			$status = $this->_get_conn_status();
 
 			if ( empty( $status['ssl_cipher'] ) ) {
 				printf(
@@ -61,7 +61,7 @@ class WP_SecureDBConnection_Admin {
 		return $elements;
 	}
 
-	private function _getConnStatus() {
+	private function _get_conn_status() {
 		global $wpdb;
 
 		$results = $wpdb->get_results(
