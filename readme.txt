@@ -45,22 +45,18 @@ To adjust the configuration, define any of the following applicable constants in
 
 Once SSL keys and certs have been configured you via the defines above define an WP core constant to pass a use SSL flag to the mysqli client also in your `wp-config.php` file.
 
-```
-define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL );
-```
+    define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL );
 
 If you are using the MySQL Native Driver and MySQL 5.6 or later `mysqli_real_connect()` will verify the server SSL certificate before connecting. If the SSL cert installed on the MySQL server your are connecting to is not valid PHP will refuse to connect. A flag was added to disable server certificate validation. If your server has an invalid certificate turn on SSL and turn off validation like so:
 
-```
-define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT );
-```
+    define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT );
 
 == Installation ==
 
 For detailed installation instructions, please read the [standard installation procedure for WordPress plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
 
 1. Install and activate plugin.
-1. Symlink or copy the `db.php` file from the `/plugins/secure-db-connection/lib/` directory to the `/wp-content/` directory.
+1. Symlink or copy the `db.php` file from the `/wp-content/plugins/secure-db-connection/lib/` directory to the `/wp-content/` directory.
 1. Set the relevant defines in your `wp-config.php` file.
 
 == Changelog ==
