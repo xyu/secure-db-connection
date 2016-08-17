@@ -8,7 +8,7 @@ Author URI: http://xyu.io/
 Version: 1.0
 */
 
-class wpdb_ssl extends wpdb {
+class WP_SecureDBConnection_DB extends wpdb {
 
 	/**
 	 * Connect to and select database.
@@ -172,4 +172,4 @@ class wpdb_ssl extends wpdb {
 
 }
 
-$wpdb = new wpdb_ssl( DB_USER, DB_PASSWORD, DB_NAME, DB_HOST );
+$wpdb = new WP_SecureDBConnection_DB( DB_USER, DB_PASSWORD, DB_NAME, DB_HOST );
