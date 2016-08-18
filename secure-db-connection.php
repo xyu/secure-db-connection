@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-require_once plugin_dir_url( __FILE__ ) . 'lib/admin.php';
-require_once plugin_dir_url( __FILE__ ) . 'lib/dropin.php';
+require_once 'lib/admin.php';
+require_once 'lib/dropin.php';
 
 class WP_SecureDBConnection {
 
