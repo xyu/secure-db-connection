@@ -28,7 +28,7 @@ class WP_SecureDBConnection_Admin {
 			$plugin = get_plugin_data( __FILE__ );
 			wp_enqueue_style(
 				'secure-db-connection',
-				plugin_dir_url( __FILE__ ) . 'includes/admin-page.css',
+				plugins_url( 'includes/admin-page.css', __DIR__ ),
 				null,
 				$plugin[ 'Version' ]
 			);

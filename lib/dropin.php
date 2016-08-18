@@ -61,7 +61,7 @@ class WP_SecureDBConnection_DropIn {
 		}
 
 		$dropin = get_plugin_data( WP_CONTENT_DIR . '/db.php' );
-		$plugin = get_plugin_data( plugin_dir_path( __FILE__ ) . '/lib/db.php' );
+		$plugin = get_plugin_data( __DIR__ . '/db.php' );
 
 		if ( strcmp( $dropin[ 'PluginURI' ], $plugin[ 'PluginURI' ] ) !== 0 ) {
 			$this->_status = self::DROPIN_FAIL_IS_NOT_SDBC;
