@@ -24,6 +24,18 @@ class WP_SecureDBConnection {
 		add_filter( 'dashboard_glance_items', array( self::_get_sdbc_admin(), 'dashboard_glance_items' ) );
 	}
 
+	public static function activation() {
+		self::_get_sdbc_dropin()->install();
+	}
+
+	public static function deactivation() {
+		self::_get_sdbc_dropin()->uninstall();
+	}
+
+	public static function uninstall() {
+		self::_get_sdbc_dropin()->uninstall();
+	}
+
 	private static $_sdbc_admin;
 	private static function _get_sdbc_admin() {
 		if ( ! self::$_sdbc_admin instanceof WP_SecureDBConnection_Admin ) {
@@ -40,8 +52,10 @@ class WP_SecureDBConnection {
 	private static function _get_sdbc_dropin() {
 		if ( ! self::$_sdbc_dropin instanceof WP_SecureDBConnection_DropIn ) {
 			global $wpdb;
+			global $wp_filesystem;
 			self::$_sdbc_dropin = new WP_SecureDBConnection_DropIn(
-				$wpdb
+				$wpdb,
+				$wp_filesystem
 			);
 		}
 		return self::$_sdbc_dropin;
@@ -49,3 +63,7 @@ class WP_SecureDBConnection {
 }
 
 add_action( 'plugins_loaded', 'WP_SecureDBConnection::load' );
+
+register_activation_hook(   __FILE__, 'WP_SecureDBConnection::activation'   );
+register_deactivation_hook( __FILE__, 'WP_SecureDBConnection::deactivation' );
+register_uninstall_hook(    __FILE__, 'WP_SecureDBConnection::uninstall'    );

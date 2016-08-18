@@ -22,11 +22,57 @@ class WP_SecureDBConnection_DropIn {
 	const DROPIN_SUCCESS            = 90;
 
 	private $_status;
+	private $_path_dropin = WP_CONTENT_DIR . '/db.php';
+	private $_path_plugin = __DIR__ . '/db.php';
 
 	private $_wpdb;
+	private $_wpfs;
 
-	public function __construct( wpdb $wpdb ) {
+	public function __construct( wpdb $wpdb, &$wp_filesystem ) {
 		$this->_wpdb = $wpdb;
+		$this->_wpfs = &$wp_filesystem;
+	}
+
+	public function install() {
+		switch ( $this->get_status() ) {
+			case self::DROPIN_FAIL_NO_FILE:       // Can install new dropin
+			case self::DROPIN_FAIL_IS_NOT_LATEST: // Can upgrade existing
+				//TODO: Move Drop-in into place
+				if ( $this->_initialize_fs() ) {
+					$this->_wpfs->copy(
+						$this->_path_plugin,
+						$this->_path_dropin,
+						true
+					);
+				}
+				return;
+			case self::DROPIN_SUCCESS:            // Already installed
+				return true;
+			case self::DROPIN_FAIL_IS_NOT_SDBC:   // Don't overwrite another dropin
+			case self::DROPIN_FAIL_IS_NOT_LOADED: // Dropin not loading abort!
+			default:
+				return false;
+		}
+	}
+
+	public function uninstall() {
+		switch ( $this->get_status() ) {
+			case self::DROPIN_SUCCESS:            // Can remove installed
+			case self::DROPIN_FAIL_IS_NOT_LATEST: // Can remove older existing
+			case self::DROPIN_FAIL_IS_NOT_LOADED: // Dropin not loading but remove anyway
+				//TODO: Remove Drop-in
+				if ( $this->_initialize_fs() ) {
+					$this->_wpfs->delete(
+						$this->_path_dropin
+					);
+				}
+				return;
+			case self::DROPIN_FAIL_NO_FILE:       // No dropin
+				return true;
+			case self::DROPIN_FAIL_IS_NOT_SDBC:   // Don't remove another dropin
+			default:
+				return false;
+		}
 	}
 
 	public function get_status() {
@@ -55,13 +101,13 @@ class WP_SecureDBConnection_DropIn {
 	}
 
 	private function _check_status() {
-		if ( ! file_exists( WP_CONTENT_DIR . '/db.php' ) ) {
+		if ( ! file_exists( $this->_path_dropin ) ) {
 			$this->_status = self::DROPIN_FAIL_NO_FILE;
 			return;
 		}
 
-		$dropin = get_plugin_data( WP_CONTENT_DIR . '/db.php' );
-		$plugin = get_plugin_data( __DIR__ . '/db.php' );
+		$dropin = get_plugin_data( $this->_path_dropin );
+		$plugin = get_plugin_data( $this->_path_plugin );
 
 		if ( strcmp( $dropin[ 'PluginURI' ], $plugin[ 'PluginURI' ] ) !== 0 ) {
 			$this->_status = self::DROPIN_FAIL_IS_NOT_SDBC;
@@ -80,6 +126,29 @@ class WP_SecureDBConnection_DropIn {
 		}
 
 		$this->_status = self::DROPIN_SUCCESS;
+	}
+
+	private function _initialize_fs() {
+		if ( defined( 'DISALLOW_FILE_MODS' ) && DISALLOW_FILE_MODS ) {
+			return false;
+		}
+
+		if ( $this->_wpfs instanceof WP_Filesystem ) {
+			return true;
+		}
+
+		if ( 'direct' !== get_filesystem_method() ) {
+			return false;
+		}
+
+		// Because we have a 'direct' method we should not need to ask via
+		// HTML form for creds from the user but use output buffering just
+		// in case.
+		ob_start();
+		$wpfs_ok = WP_Filesystem( request_filesystem_credentials( '' ) );
+		ob_end_clean();
+
+		return ( bool ) $wpfs_ok;
 	}
 
 }
