@@ -5,6 +5,7 @@
  * Description: Sets SSL keys and certs for encrypted database connections
  * Author: Xiao Yu
  * Author URI: http://xyu.io/
+ * Text Domain: secure-db-connection
  * Version: 1.0
  */
 
@@ -44,15 +45,24 @@ class WP_SecureDBConnection_Admin {
 
 			if ( empty( $status['ssl_cipher'] ) ) {
 				printf(
-					'<li class="securedbconnection-nossl"><span title="%s">%s</span></li>',
-					"Connection to MySQL is in plain text:\n" . $this->_dropin->get_status_message(),
-					'MySQL Unencrypted'
+					'<li class="%1$s"><span title="%2$s">%3$s</span></li>',
+					'securedbconnection-nossl',
+					esc_attr( sprintf(
+						__( "Connection to MySQL is in plain text:\n%s", 'secure-db-connection' ),
+						$this->_dropin->get_status_message()
+					) ),
+					esc_html__( 'MySQL Unencrypted', 'secure-db-connection' )
 				);
 			} else {
 				printf(
-					'<li class="securedbconnection-ssl"><span title="%s">%s</span></li>',
-					"Connection to MySQL is SSL ({$status['ssl_version']}) encrypted via {$status['ssl_cipher']}",
-					"MySQL Secured"
+					'<li class="%1$s"><span title="%2$s">%3$s</span></li>',
+					'securedbconnection-ssl',
+					esc_attr( sprintf(
+						__( 'Connection to MySQL is SSL (%1$s) encrypted via %2$s', 'secure-db-connection' ),
+						$status['ssl_version'],
+						$status['ssl_cipher']
+					) ),
+					esc_html__( 'MySQL Secured', 'secure-db-connection' )
 				);
 			}
 		}

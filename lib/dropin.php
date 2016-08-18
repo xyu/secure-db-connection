@@ -5,6 +5,7 @@
  * Description: Sets SSL keys and certs for encrypted database connections
  * Author: Xiao Yu
  * Author URI: http://xyu.io/
+ * Text Domain: secure-db-connection
  * Version: 1.1.0
  */
 
@@ -39,17 +40,17 @@ class WP_SecureDBConnection_DropIn {
 	public function get_status_message() {
 		switch ( $this->get_status() ) {
 			case self::DROPIN_FAIL_NO_FILE:
-				return 'Secure DB Connection drop-in (/wp-content/db.php) does not exist';
+				return __( 'Secure DB Connection drop-in (/wp-content/db.php) does not exist', 'secure-db-connection' );
 			case self::DROPIN_FAIL_IS_NOT_SDBC:
-				return 'Database drop-in (/wp-content/db.php) is not from Secure DB Connection';
+				return __( 'Database drop-in (/wp-content/db.php) is not from Secure DB Connection', 'secure-db-connection' );
 			case self::DROPIN_FAIL_IS_NOT_LATEST:
-				return 'Secure DB Connection drop-in not the latest version';
+				return __( 'Secure DB Connection drop-in not the latest version', 'secure-db-connection' );
 			case self::DROPIN_FAIL_IS_NOT_LOADED:
-				return 'Secure DB Connection drop-in is not loaded';
+				return __( 'Secure DB Connection drop-in is not loaded', 'secure-db-connection' );
 			case self::DROPIN_SUCCESS:
-				return 'Secure DB Connection drop-in loaded successfully';
+				return __( 'Secure DB Connection drop-in loaded successfully', 'secure-db-connection' );
 			default:
-				return 'Secure DB Connection drop-in status unknown';
+				return __( 'Secure DB Connection drop-in status unknown', 'secure-db-connection' );
 		}
 	}
 

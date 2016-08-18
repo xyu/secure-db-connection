@@ -5,6 +5,7 @@
  * Description: Sets SSL keys and certs for encrypted database connections
  * Author: Xiao Yu
  * Author URI: http://xyu.io/
+ * Text Domain: secure-db-connection
  * Version: 1.0
  */
 
