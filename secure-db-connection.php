@@ -19,6 +19,7 @@ require_once 'lib/dropin.php';
 class WP_SecureDBConnection {
 
 	public static function load() {
+		load_plugin_textdomain( 'secure-db-connection', false, 'secure-db-connection/languages' );
 		add_action( 'admin_enqueue_scripts', array( self::_get_sdbc_admin(), 'admin_enqueue_scripts' ) );
 		add_filter( 'dashboard_glance_items', array( self::_get_sdbc_admin(), 'dashboard_glance_items' ) );
 	}

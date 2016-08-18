@@ -1,0 +1,111 @@
+# Copyright (C) 2016 Secure DB Connection
+# This file is distributed under the same license as the Secure DB Connection package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Secure DB Connection 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/secure-db-connection\n"
+"POT-Creation-Date: 2016-08-18 12:45:17+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: lib/admin.php:51
+msgid ""
+"Connection to MySQL is in plain text:\n"
+"%s"
+msgstr ""
+
+#: lib/admin.php:54
+msgid "MySQL Unencrypted"
+msgstr ""
+
+#: lib/admin.php:61
+msgid "Connection to MySQL is SSL (%1$s) encrypted via %2$s"
+msgstr ""
+
+#: lib/admin.php:65
+msgid "MySQL Secured"
+msgstr ""
+
+#: lib/db.php:134
+msgid "Error establishing a database connection"
+msgstr ""
+
+#. translators: 1: wp-config.php. 2: database host
+#: lib/db.php:138
+msgid ""
+"This either means that the username and password information in your %1$s "
+"file is incorrect or we can&#8217;t contact the database server at %2$s. "
+"This could mean your host&#8217;s database server is down."
+msgstr ""
+
+#: lib/db.php:144
+msgid "Are you sure you have the correct username and password?"
+msgstr ""
+
+#: lib/db.php:145
+msgid "Are you sure that you have typed the correct hostname?"
+msgstr ""
+
+#: lib/db.php:146
+msgid "Are you sure that the database server is running?"
+msgstr ""
+
+#. translators: %s: support forums URL
+#: lib/db.php:151
+msgid ""
+"If you&#8217;re unsure what these terms mean you should probably contact "
+"your host. If you still need help you can always visit the <a href=\"%s"
+"\">WordPress Support Forums</a>."
+msgstr ""
+
+#: lib/db.php:152
+msgid "https://wordpress.org/support/"
+msgstr ""
+
+#: lib/dropin.php:74
+msgid "Secure DB Connection drop-in (/wp-content/db.php) does not exist"
+msgstr ""
+
+#: lib/dropin.php:76
+msgid "Database drop-in (/wp-content/db.php) is not from Secure DB Connection"
+msgstr ""
+
+#: lib/dropin.php:78
+msgid "Secure DB Connection drop-in not the latest version"
+msgstr ""
+
+#: lib/dropin.php:80
+msgid "Secure DB Connection drop-in is not loaded"
+msgstr ""
+
+#: lib/dropin.php:82
+msgid "Secure DB Connection drop-in loaded successfully"
+msgstr ""
+
+#: lib/dropin.php:84
+msgid "Secure DB Connection drop-in status unknown"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Secure DB Connection"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/plugins/secure-db-connection/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Sets SSL keys and certs for encrypted database connections"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Xiao Yu"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://xyu.io/"
+msgstr ""
