@@ -15,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WP_SecureDBConnection_DropIn {
 
-	const DROPIN_FAIL_NO_FILE       = 10
-	const DROPIN_FAIL_IS_NOT_SDBC   = 20
-	const DROPIN_FAIL_IS_NOT_LATEST = 30
-	const DROPIN_FAIL_IS_NOT_LOADED = 40
-	const DROPIN_SUCCESS            = 100
+	const DROPIN_FAIL_NO_FILE       = 10;
+	const DROPIN_FAIL_IS_NOT_SDBC   = 20;
+	const DROPIN_FAIL_IS_NOT_LATEST = 30;
+	const DROPIN_FAIL_IS_NOT_LOADED = 40;
+	const DROPIN_SUCCESS            = 90;
 
 	private $_status;
 
