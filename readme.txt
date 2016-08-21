@@ -3,11 +3,11 @@ Contributors: HypertextRanch
 Tags: db, mysql, secure, encrypted, ssl
 Requires at least: 3.9
 Tested up to: 4.6
-Stable tag: 1.0
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Sets SSL keys and certs for encrypted database connections.
+Sets SSL keys and certs for encrypted MySQL database connections.
 
 == Description ==
 
@@ -55,15 +55,22 @@ If you are using the MySQL Native Driver and MySQL 5.6 or later `mysqli_real_con
 
 For detailed installation instructions, please read the [standard installation procedure for WordPress plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
 
-1. Install and activate plugin.
-1. Symlink or copy the `db.php` file from the `/wp-content/plugins/secure-db-connection/lib/` directory to the `/wp-content/` directory.
-1. Set the relevant defines in your `wp-config.php` file.
+1. Install and activate plugin, if the filesystem is writable the Secure DB Connection dropin will be installed for you automatically. If not proceed to step 2
+2. Symlink or copy the `db.php` file from the `/wp-content/plugins/secure-db-connection/lib/` directory to the `/wp-content/` directory.
+3. Set the relevant defines in your `wp-config.php` file.
 
 == Screenshots ==
 
 1. An at a glance item is added showing the status of the MySQL connection when this plugin is activated. If the connection is encrypted the SSL version and cipher used will also be shown.
 
 == Changelog ==
+
+= 1.1.0 =
+
+  * Fix status message for when DB connection is not SSL enabled
+  * Automatically install and remove db.php dropin on activate / deactivate
+  * Check and report status of dropin
+  * Add i18n support
 
 = 1.0 =
 
