@@ -59,6 +59,10 @@ For detailed installation instructions, please read the [standard installation p
 1. Symlink or copy the `db.php` file from the `/wp-content/plugins/secure-db-connection/lib/` directory to the `/wp-content/` directory.
 1. Set the relevant defines in your `wp-config.php` file.
 
+== Screenshots ==
+
+1. An at a glance item is added showing the status of the MySQL connection when this plugin is activated. If the connection is encrypted the SSL version and cipher used will also be shown.
+
 == Changelog ==
 
 = 1.0 =
