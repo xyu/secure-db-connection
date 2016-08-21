@@ -3,7 +3,7 @@ Contributors: HypertextRanch
 Tags: db, mysql, secure, encrypted, ssl
 Requires at least: 3.9
 Tested up to: 4.6
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,6 +64,10 @@ For detailed installation instructions, please read the [standard installation p
 1. An at a glance item is added showing the status of the MySQL connection when this plugin is activated. If the connection is encrypted the SSL version and cipher used will also be shown.
 
 == Changelog ==
+
+= 1.1.1 =
+
+  * Retag release to fix version inconsistency
 
 = 1.1.0 =
 
