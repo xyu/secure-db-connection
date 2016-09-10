@@ -5,7 +5,7 @@
  * Description: Sets SSL keys and certs for encrypted database connections
  * Author: Xiao Yu
  * Author URI: http://xyu.io/
- * Version: 1.1.1
+ * Version: 1.1.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -73,6 +73,9 @@ class WP_SecureDBConnection_DB extends wpdb {
 					$ssl_opts_set = true;
 					break;
 				}
+			}
+			if ( MYSQLI_CLIENT_SSL !== ( $client_flags & MYSQLI_CLIENT_SSL ) ) {
+				$ssl_opts_set = false;
 			}
 			if ( $ssl_opts_set ) {
 				mysqli_ssl_set(

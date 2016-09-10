@@ -6,7 +6,7 @@
  * Author: Xiao Yu
  * Author URI: http://xyu.io/
  * Text Domain: secure-db-connection
- * Version: 1.1.1
+ * Version: 1.1.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
