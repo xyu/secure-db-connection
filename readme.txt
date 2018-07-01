@@ -68,6 +68,7 @@ For detailed installation instructions, please read the [standard installation p
 = 1.1.5 =
 
   * PHP backwards compatibility with versions prior to 5.5
+  * Syncs DB connect code with WP Core 4.9 (Fixes https://core.trac.wordpress.org/ticket/41722)
 
 = 1.1.4 =
 

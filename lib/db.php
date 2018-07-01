@@ -39,24 +39,23 @@ class WP_SecureDBConnection_DB extends wpdb {
 		if ( $this->use_mysqli ) {
 			$this->dbh = mysqli_init();
 
-			// mysqli_real_connect doesn't support the host param including a port or socket
-			// like mysql_connect does. This duplicates how mysql_connect detects a port and/or socket file.
-			$port = null;
-			$socket = null;
-			$host = $this->dbhost;
-			$port_or_socket = strstr( $host, ':' );
-			if ( ! empty( $port_or_socket ) ) {
-				$host = substr( $host, 0, strpos( $host, ':' ) );
-				$port_or_socket = substr( $port_or_socket, 1 );
-				if ( 0 !== strpos( $port_or_socket, '/' ) ) {
-					$port = intval( $port_or_socket );
-					$maybe_socket = strstr( $port_or_socket, ':' );
-					if ( ! empty( $maybe_socket ) ) {
-						$socket = substr( $maybe_socket, 1 );
-					}
-				} else {
-					$socket = $port_or_socket;
-				}
+			$host    = $this->dbhost;
+			$port    = null;
+			$socket  = null;
+			$is_ipv6 = false;
+
+			if ( $host_data = $this->parse_db_host( $this->dbhost ) ) {
+				list( $host, $port, $socket, $is_ipv6 ) = $host_data;
+			}
+
+			/*
+			 * If using the `mysqlnd` library, the IPv6 address needs to be
+			 * enclosed in square brackets, whereas it doesn't while using the
+			 * `libmysqlclient` library.
+			 * @see https://bugs.php.net/bug.php?id=67563
+			 */
+			if ( $is_ipv6 && extension_loaded( 'mysqlnd' ) ) {
+				$host = "[$host]";
 			}
 
 			// Set SSL certs if we want to use secure DB connections
@@ -97,7 +96,8 @@ class WP_SecureDBConnection_DB extends wpdb {
 			if ( $this->dbh->connect_errno ) {
 				$this->dbh = null;
 
-				/* It's possible ext/mysqli is misconfigured. Fall back to ext/mysql if:
+				/*
+				 * It's possible ext/mysqli is misconfigured. Fall back to ext/mysql if:
 		 		 *  - We haven't previously connected, and
 		 		 *  - WP_USE_EXT_MYSQL isn't set to false, and
 		 		 *  - ext/mysql is loaded.
