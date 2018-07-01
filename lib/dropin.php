@@ -6,7 +6,7 @@
  * Author: Xiao Yu
  * Author URI: http://xyu.io/
  * Text Domain: secure-db-connection
- * Version: 1.1.2
+ * Version: 1.1.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,13 +22,19 @@ class WP_SecureDBConnection_DropIn {
 	const DROPIN_SUCCESS            = 90;
 
 	private $_status;
-	private $_path_dropin = WP_CONTENT_DIR . '/db.php';
-	private $_path_plugin = __DIR__ . '/db.php';
+	private $_path_dropin;
+	private $_path_plugin;
 
 	private $_wpdb;
 	private $_wpfs;
 
+	private function _set_property_defaults() {
+		$this->_path_dropin = WP_CONTENT_DIR . '/db.php';
+		$this->_path_plugin = __DIR__ . '/db.php';
+	}
+
 	public function __construct( wpdb $wpdb, &$wp_filesystem ) {
+		$this->_set_property_defaults();
 		$this->_wpdb = $wpdb;
 		$this->_wpfs = &$wp_filesystem;
 	}
