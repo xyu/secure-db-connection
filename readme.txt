@@ -65,6 +65,10 @@ For detailed installation instructions, please read the [standard installation p
 
 == Changelog ==
 
+= 1.1.5 =
+
+  * PHP backwards compatibility with versions prior to 5.5
+
 = 1.1.4 =
 
   * Update version numbers in file headers.

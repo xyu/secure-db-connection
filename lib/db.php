@@ -65,7 +65,7 @@ class WP_SecureDBConnection_DB extends wpdb {
 				'CERT'    => ( defined( 'MYSQL_SSL_CERT'    ) && is_file( MYSQL_SSL_CERT    ) ) ? MYSQL_SSL_CERT    : null,
 				'CA'      => ( defined( 'MYSQL_SSL_CA'      ) && is_file( MYSQL_SSL_CA      ) ) ? MYSQL_SSL_CA      : null,
 				'CA_PATH' => ( defined( 'MYSQL_SSL_CA_PATH' ) && is_dir ( MYSQL_SSL_CA_PATH ) ) ? MYSQL_SSL_CA_PATH : null,
-				'CIPHER'  => ( defined( 'MYSQL_SSL_CIPHER'  ) && !empty ( MYSQL_SSL_CIPHER  ) ) ? MYSQL_SSL_CIPHER  : null,
+				'CIPHER'  => ( defined( 'MYSQL_SSL_CIPHER'  ) && false != MYSQL_SSL_CIPHER    ) ? MYSQL_SSL_CIPHER  : null,
 			);
 			$ssl_opts_set = false;
 			foreach ( $ssl_opts as $ssl_opt_val ) {
