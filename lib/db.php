@@ -5,7 +5,7 @@
  * Description: Sets SSL keys and certs for encrypted database connections
  * Author: Xiao Yu
  * Author URI: http://xyu.io/
- * Version: 1.1.4
+ * Version: 1.1.5
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

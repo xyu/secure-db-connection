@@ -2,8 +2,8 @@
 Contributors: HypertextRanch
 Tags: db, mysql, secure, encrypted, ssl
 Requires at least: 3.9
-Tested up to: 4.8.2
-Stable tag: 1.1.4
+Tested up to: 4.9.6
+Stable tag: 1.1.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
