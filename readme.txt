@@ -1,6 +1,7 @@
 === Secure DB Connection ===
 Contributors: HypertextRanch
 Tags: db, mysql, secure, encrypted, ssl
+Donate link: https://cash.me/$xyu
 Requires at least: 4.9
 Tested up to: 4.9.6
 Requires PHP: 5.2.4
