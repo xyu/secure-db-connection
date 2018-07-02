@@ -55,21 +55,31 @@ First please note, only the `mysqli` (MySQL Improved) extension is supported thi
 
 Depending on your database configuration you may not need to set all the available options. For example when connecting to RDS Amazon helpfully provides a certificate bundle so once that's downloaded to the server all that's need is to set the CA option:
 
-    define( 'MYSQL_SSL_CA', '/path/to/rds-combined-ca-bundle.pem' );
+    define(
+      'MYSQL_SSL_CA',
+      '/path/to/rds-combined-ca-bundle.pem'
+    );
 
 Once SSL keys / certs have been configured you via the defines above define an WP core constant to pass a use SSL flag to the mysqli client also in your `wp-config.php` file.
 
-    define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL );
+    define(
+      'MYSQL_CLIENT_FLAGS',
+      MYSQLI_CLIENT_SSL
+    );
 
 If you are using the MySQL Native Driver and MySQL 5.6 or later `mysqli_real_connect()` will verify the server SSL certificate before connecting. If the SSL cert installed on the MySQL server your are connecting to is not valid PHP will refuse to connect. A flag was added to disable server certificate validation. If your server has an invalid certificate turn on SSL and turn off validation like so:
 
-    define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT );
+    define(
+      'MYSQL_CLIENT_FLAGS',
+       MYSQLI_CLIENT_SSL |
+       MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT
+    );
 
 = Example Config =
 
 Aside from setting the normal MySQL connection parameters the minimum configs to get SSL connections to the database will look something like this in `wp-config.php`:
 
-    define( 'MYSQL_SSL_CA', '/path/to/rds-combined-ca-bundle.pem' );
+    define( 'MYSQL_SSL_CA', '/path/to/ca-bundle.pem' );
     define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL );
 
 == Screenshots ==
