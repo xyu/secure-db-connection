@@ -1,8 +1,9 @@
 === Secure DB Connection ===
 Contributors: HypertextRanch
 Tags: db, mysql, secure, encrypted, ssl
-Requires at least: 3.9
+Requires at least: 4.9
 Tested up to: 4.9.6
+Requires PHP: 5.2.4
 Stable tag: 1.1.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
