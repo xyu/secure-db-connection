@@ -31,7 +31,7 @@ To adjust the configuration, define any of the following applicable constants in
 
   * `MYSQL_SSL_CA` [default: not set]
 
-    The path name to the certificate authority file.
+    The path name to the certificate authority file in PEM format.
 
   * `MYSQL_SSL_CA_PATH` [default: not set]
 
@@ -39,11 +39,17 @@ To adjust the configuration, define any of the following applicable constants in
 
   * `MYSQL_SSL_CIPHER` [default: not set]
 
-    A list of allowable ciphers to use for SSL encryption
+    A list of allowable ciphers to use for SSL encryption. You can leave this blank if you want to just use the strongest available.
 
 = Turning on SSL =
 
-Once SSL keys and certs have been configured you via the defines above define an WP core constant to pass a use SSL flag to the mysqli client also in your `wp-config.php` file.
+First please note, only the `mysqli` (MySQL Improved) extension is supported this is the default extension used by WordPress however if you do not have the extension installed WordPress will fallback on the much older mysql extension which does not support secure connections.
+
+Depending on your database configuration you may not need to set all the available options. For example when connecting to RDS Amazon helpfully provides a certificate bundle so once that's downloaded to the server all that's need is to set the CA option:
+
+    define( 'MYSQL_SSL_CA', '/path/to/rds-combined-ca-bundle.pem' );
+
+Once SSL keys / certs have been configured you via the defines above define an WP core constant to pass a use SSL flag to the mysqli client also in your `wp-config.php` file.
 
     define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL );
 
