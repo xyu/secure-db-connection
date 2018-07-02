@@ -65,6 +65,13 @@ If you are using the MySQL Native Driver and MySQL 5.6 or later `mysqli_real_con
 
     define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT );
 
+= Example Config =
+
+Aside from setting the normal MySQL connection parameters the minimum configs to get SSL connections to the database will look something like this in `wp-config.php`:
+
+    define( 'MYSQL_SSL_CA', '/path/to/rds-combined-ca-bundle.pem' );
+    define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL );
+
 == Screenshots ==
 
 1. An at a glance item is added showing the status of the MySQL connection when this plugin is activated. If the connection is encrypted the SSL version and cipher used will also be shown.
