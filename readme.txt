@@ -17,6 +17,14 @@ This plugin will also add a custom item on the "At a Glance" section of the Dash
 
 Also find me on [GitHub](https://github.com/xyu/secure-db-connection).
 
+== Installation ==
+
+For detailed installation instructions, please read the [standard installation procedure for WordPress plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
+
+1. Install and activate plugin, if the filesystem is writable the Secure DB Connection dropin will be installed for you automatically. If not proceed to step 2
+2. Symlink or copy the `db.php` file from the `/wp-content/plugins/secure-db-connection/lib/` directory to the `/wp-content/` directory.
+3. Set the relevant defines in your `wp-config.php` file.
+
 = Configuration Parameters =
 
 To adjust the configuration, define any of the following applicable constants in your `wp-config.php` file.
@@ -56,14 +64,6 @@ Once SSL keys / certs have been configured you via the defines above define an W
 If you are using the MySQL Native Driver and MySQL 5.6 or later `mysqli_real_connect()` will verify the server SSL certificate before connecting. If the SSL cert installed on the MySQL server your are connecting to is not valid PHP will refuse to connect. A flag was added to disable server certificate validation. If your server has an invalid certificate turn on SSL and turn off validation like so:
 
     define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT );
-
-== Installation ==
-
-For detailed installation instructions, please read the [standard installation procedure for WordPress plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
-
-1. Install and activate plugin, if the filesystem is writable the Secure DB Connection dropin will be installed for you automatically. If not proceed to step 2
-2. Symlink or copy the `db.php` file from the `/wp-content/plugins/secure-db-connection/lib/` directory to the `/wp-content/` directory.
-3. Set the relevant defines in your `wp-config.php` file.
 
 == Screenshots ==
 
