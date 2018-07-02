@@ -78,6 +78,10 @@ Aside from setting the normal MySQL connection parameters the minimum configs to
 
 == Changelog ==
 
+= 1.1.6 =
+
+  * Cleanup GitHub repo, remove screenshot image
+
 = 1.1.5 =
 
   * PHP backwards compatibility with versions prior to 5.5
