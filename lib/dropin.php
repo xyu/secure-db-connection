@@ -83,7 +83,7 @@ class WP_SecureDBConnection_DropIn {
 
 	public function get_status() {
 		if ( empty( $this->_status ) ) {
-			$this->_check_status();
+			$this->_status = $this->_check_status();
 		}
 
 		return $this->_status;
@@ -108,30 +108,26 @@ class WP_SecureDBConnection_DropIn {
 
 	private function _check_status() {
 		if ( ! file_exists( $this->_path_dropin ) ) {
-			$this->_status = self::DROPIN_FAIL_NO_FILE;
-			return;
+			return self::DROPIN_FAIL_NO_FILE;
 		}
 
 		$dropin = get_plugin_data( $this->_path_dropin );
 		$plugin = get_plugin_data( $this->_path_plugin );
 
 		if ( strcmp( $dropin[ 'PluginURI' ], $plugin[ 'PluginURI' ] ) !== 0 ) {
-			$this->_status = self::DROPIN_FAIL_IS_NOT_SDBC;
-			return;
+			return self::DROPIN_FAIL_IS_NOT_SDBC;
 		}
 
 		if ( version_compare( $dropin[ 'Version' ], $plugin[ 'Version' ], '<' ) ) {
-			$this->_status = self::DROPIN_FAIL_IS_NOT_LATEST;
-			return;
+			return self::DROPIN_FAIL_IS_NOT_LATEST;
 		}
 
 		if ( ! $this->_wpdb instanceof WP_SecureDBConnection_DB ) {
 			// This should almost never happen
-			$this->_status = self::DROPIN_FAIL_IS_NOT_LOADED;
-			return;
+			return self::DROPIN_FAIL_IS_NOT_LOADED;
 		}
 
-		$this->_status = self::DROPIN_SUCCESS;
+		return self::DROPIN_SUCCESS;
 	}
 
 	private function _initialize_fs() {
