@@ -43,13 +43,13 @@ class WP_SecureDBConnection_DropIn {
 		switch ( $this->get_status() ) {
 			case self::DROPIN_FAIL_NO_FILE:       // Can install new dropin
 			case self::DROPIN_FAIL_IS_NOT_LATEST: // Can upgrade existing
-				//TODO: Move Drop-in into place
 				if ( $this->_initialize_fs() ) {
 					$this->_wpfs->copy(
 						$this->_path_plugin,
 						$this->_path_dropin,
 						true
 					);
+					$this->_status = null;
 				}
 				return;
 			case self::DROPIN_SUCCESS:            // Already installed
@@ -66,11 +66,11 @@ class WP_SecureDBConnection_DropIn {
 			case self::DROPIN_SUCCESS:            // Can remove installed
 			case self::DROPIN_FAIL_IS_NOT_LATEST: // Can remove older existing
 			case self::DROPIN_FAIL_IS_NOT_LOADED: // Dropin not loading but remove anyway
-				//TODO: Remove Drop-in
 				if ( $this->_initialize_fs() ) {
 					$this->_wpfs->delete(
 						$this->_path_dropin
 					);
+					$this->_status = null;
 				}
 				return;
 			case self::DROPIN_FAIL_NO_FILE:       // No dropin
