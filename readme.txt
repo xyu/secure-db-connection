@@ -93,6 +93,7 @@ Aside from setting the normal MySQL connection parameters the minimum configs to
 = 1.1.6 =
 
   * Cleanup GitHub repo, remove screenshot image
+  * Minor code cleanup
 
 = 1.1.5 =
 

@@ -53,11 +53,10 @@ class WP_SecureDBConnection_DropIn {
 				}
 				return;
 			case self::DROPIN_SUCCESS:            // Already installed
-				return true;
 			case self::DROPIN_FAIL_IS_NOT_SDBC:   // Don't overwrite another dropin
 			case self::DROPIN_FAIL_IS_NOT_LOADED: // Dropin not loading abort!
 			default:
-				return false;
+				return;
 		}
 	}
 
@@ -74,10 +73,9 @@ class WP_SecureDBConnection_DropIn {
 				}
 				return;
 			case self::DROPIN_FAIL_NO_FILE:       // No dropin
-				return true;
 			case self::DROPIN_FAIL_IS_NOT_SDBC:   // Don't remove another dropin
 			default:
-				return false;
+				return;
 		}
 	}
 
